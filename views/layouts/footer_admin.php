@@ -15,19 +15,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/template/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/template/js/register.js"></script>
-	<script>
-		$(document).ready(function(){
-			$(".add-to-basket").click(function(){
-				var id = $(this).attr("data-id");
-				$.post("/basket/addAjax/"+id, {}, function (data) {
-					$("#basket-count").html(data);
-				});
-				return false;
-			});
-		});
-	</script>
-
+	<script src="/template/js/register.js"></script>
 </body>
 
 </html>

@@ -16,7 +16,6 @@
 	<link href="/template/css/register.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/template/css/view-product.css" rel="stylesheet">
     <link href="/template/css/shop-homepage.css" rel="stylesheet">
 
 </head>
@@ -31,36 +30,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 					<ul class="nav navbar-nav">
 						<li>
-							<a class="navbar-brand" href="/">Главная</a>
-						</li>
-						<li>
-							<a class="navbar-brand" href="/catalog/">Каталог</a>
-						</li>
-						<li>
-							<a class="navbar-brand" href="/basket/">Корзина
-							<span id="basket-count"> <?=Basket::countItem();?> </span>
-							</a>
-						</li>
-						<?if(User::isGuest()):?>
-						<li>
-							<a class="navbar-brand" href="/user/login/">Вход</a>
-						</li>
-						<li>
-							<a class="navbar-brand" href="/user/register/">Регистрация</a>
-						</li>
-						<?else:?>
-						<li>
-							<a class="navbar-brand" href="/cabinet/">Личный кабинет</a>
-						</li>
-						<li>
-							<a class="navbar-brand" href="/user/logout/">Выход</a>
-						</li>
-						<?endif;?>
-						<li>
-							<a class="navbar-brand" href="/about/">О нас</a>
-						</li>
-						<li>
-							<a class="navbar-brand" href="/contact/">Контакты</a>
+							<a class="navbar-brand" href="/evkazolinAdminka">Админпанель</a>
 						</li>
 					</ul>
 				</div>

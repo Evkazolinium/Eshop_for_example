@@ -1,4 +1,4 @@
-﻿<? include ROOT.'/views/layouts/header.php';?>
+<? include ROOT.'/views/layouts/header.php';?>
 
 <!-- Page Content -->
 <div class="container">
@@ -9,7 +9,7 @@
 			<p class="lead">Платформы</p>
 			<div class="list-group">
 				<?php foreach($categories as $categoryItem) :?>
-					<a href="/category/<?=$categoryItem['id'];?>" class="list-group-item"><?=$categoryItem['name'];?></a>
+					<a href="/category/<?=$categoryItem['id'];?>" class="list-group-item"><?=$categoryItem['name_platforms'];?></a>
 				<? endforeach;?>
 			</div>
 		</div>
@@ -18,23 +18,25 @@
 
 			<div class="row">
 				
+                    <?php include('/template/rating/rating.php'); ?>
 				<?php foreach($productList as $productItem) :?>
 				
 				<div class="col-sm-4 col-lg-4 col-md-4">
 					<div class="thumbnail">
-						<img src="http://placehold.it/320x150" alt="" src="/template/images/new_lable.jpeg" alt="">
+					<img src="/template/images/320x150.png">
 						<div class="caption">
 							<h5><a href="/product/<?=$productItem['id']?>"><?=$productItem['name']?></a></h5>
 							<p><h4 ><?=$productItem['price']?> грн.</h4></p>
+						<a href="#" data-id="<?=$productItem['id'];?>" class="btn btn-success add-to-basket">Купить</a>
 						</div>
+							<a href="/product/<?=$productItem['id']?>/#service-three" class="pull-right">&nbsp<?=Comment::countCommentsByProduct($productItem['id']);?>  отзывов</a>
 						<div class="ratings">
-							<p class="pull-right">15 reviews</p>
-							<p>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
+							<p class="pull-right">
+								<span class="glyphicon glyphicon-star-empty"></span>
+								<span class="glyphicon glyphicon-star-empty"></span>
+								<span class="glyphicon glyphicon-star-empty"></span>
+								<span class="glyphicon glyphicon-star-empty"></span>
+								<span class="glyphicon glyphicon-star-empty"></span>
 							</p>
 						</div>
 					</div>

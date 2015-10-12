@@ -11,7 +11,10 @@ class User {
 		
 	}
 	public static function validateUsername($value) {
-		return strlen($value) > 5;
+		if(preg_match("/\w+/", $value) && strlen($value) > 3) {
+			return true;
+		}
+		return false;
 	}
 	public static function validatePassword($value) {
 		return strlen($value) > 3;
@@ -49,8 +52,38 @@ class User {
 	}
 	
 	public static function auth($userId) {
-		session_start();
 		$_SESSION['user'] = $userId;
 	}
+	public static function validateLogged() {
+		if(isset($_SESSION['user'])) {
+			return $_SESSION['user'];
+		}
+		header('Location: /user/login');
+	}
+	public static function isGuest() {
+		if(isset($_SESSION['user'])) {
+			return false;
+		}
+		return true;
+	}
+	public static function getUserById($id) {
+		$db = Db::dbConnection();
+		$sql = 'SELECT * FROM users WHERE id = :id ';
+		$result = $db->prepare($sql);
+		$result->bindParam(':id', $id, PDO::PARAM_STR);
+		$result->setFetchMode(PDO::FETCH_ASSOC);
+		$result->execute();
+		
+		return $result->fetch();
+	}
+	public static function edit($userId, $username, $password) {
+		$db = Db::dbConnection();
+		$sql = 'UPDATE users SET name = :name WHERE id = :id ';
+		$result = $db->prepare($sql);
+		$result->bindParam(':name', $username, PDO::PARAM_STR);
+		$result->bindParam(':id', $userId, PDO::PARAM_STR);
+		return $result->execute();
+	}	
+	
 }
 ?>

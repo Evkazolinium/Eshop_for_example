@@ -14,7 +14,7 @@ class UserController {
 			
 			$errors = false;
 			if(!User::validateUsername($username)) {
-				$errors[] = "Имя должно быть больше 5 символов";
+				$errors[] = "Имя должно быть больше 5 символов и не должно содержать пробелы";
 			}
 			
 			if(!User::validateEmail($email)) {
@@ -70,6 +70,10 @@ class UserController {
 		}
 		require_once(ROOT.'/views/user/login.php');
 		return true;
+	}
+	public function actionLogout() {
+		unset($_SESSION['user']);
+		header("Location: /");
 	}
 	
 }

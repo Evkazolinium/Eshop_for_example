@@ -11,7 +11,7 @@
 				<?php foreach($categories as $categoryItem) :?>
 						<a href="/category/<?=$categoryItem['id'];?>"
 							class="<? if($categoryItem['id'] == $categoryId) echo 'list-group-item-active'; else echo 'list-group-item';?>">
-							<?=$categoryItem['name'];?></a>
+							<?=$categoryItem['name_platforms'];?></a>
 					<? endforeach;?>
 			</div>
 		</div>
@@ -24,14 +24,15 @@
 				
 				<div class="col-sm-4 col-lg-4 col-md-4">
 					<div class="thumbnail">
-						<img src="http://placehold.it/320x150" alt="" src="/template/images/new_lable.jpeg" alt="">
+					<img src="/template/images/320x150.png">
 						<div class="caption">
 							<a href="/product/<?=$product['id']?>"><?=$product['name']?></a></h5>
 							<p><h4 ><?=$product['price']?> грн.</h4></p>
+							<a href="#" data-id="<?=$product['id'];?>" class="btn btn-success add-to-basket">Купить</a>
 						</div>
+							<a href="" class="pull-right">&nbsp<?=Comment::countCommentsByProduct($product['id']);?> отзывов</a>
 						<div class="ratings">
-							<p class="pull-right">15 reviews</p>
-							<p>
+							<p class="pull-right">
 								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star"></span>
