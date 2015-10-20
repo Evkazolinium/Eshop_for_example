@@ -25,12 +25,7 @@ class SiteController {
 			$subject = $_POST['subject'];
 			
 			$errors = false;
-<<<<<<< HEAD
 			if(!User::validateEmail($userEmail)) {
-=======
-			
-			if(User::validateEmail($userEmail)) {
->>>>>>> 7769891b2a92629c9fccac6a4543af8c5b87f4f5
 				$errors[] = "Неправильный Email";
 			}
 			if($errors == false) {
