@@ -3,11 +3,11 @@ class ProductController {
 	public function actionView($productId) {
 		
 		$categories = array();
-		$categories = Category::getCategoryList();
+		$categories = Platform::getPlatformList();
 		
 		$product = Products::getProductById($productId);
         $productId = $product['id'];
-        $platform = Category::getCategoryById($product['platform_id']);
+        $platform = Platform::getPlatformById($product['platform_id']);
         $comments = Comment::getCommentsByProductId($productId);
         //COMMENTS
         if(isset($_POST['submit'])) {

@@ -1,10 +1,10 @@
 <?php
-class Category {
-	public static function getCategoryList() {
+class platform {
+	public static function getPlatformList() {
 		
 		$db = Db::dbConnection();
 		
-		$categoryList = array();
+		$platformList = array();
 		
 		$result = $db->query('SELECT id, name_platforms '
 							.'FROM platforms '
@@ -12,47 +12,50 @@ class Category {
 							.'ORDER BY sort ASC ');
 		$i = 0;
 		while($row = $result->fetch()) {
-			$categoryList[$i]['id'] = $row['id'];
-			$categoryList[$i]['name_platforms'] = $row['name_platforms'];
+			$platformList[$i]['id'] = $row['id'];
+			$platformList[$i]['name_platforms'] = $row['name_platforms'];
 			$i++;
 		}
-		return $categoryList;
+		return $platformList;
 	}
     
-    public static function getCategoryListByAdmin() {
+    public static function getPlatformListByAdmin() {
 		
 		$db = Db::dbConnection();
 		
-		$categoryList = array();
+		$platformList = array();
 		
 		$result = $db->query('SELECT * '
 							.'FROM platforms '
 							.'ORDER BY sort ASC ');
 		$i = 0;
 		while($row = $result->fetch()) {
-			$categoryList[$i]['id'] = $row['id'];
-			$categoryList[$i]['name_platforms'] = $row['name_platforms'];
-            $categoryList[$i]['sort'] = $row['sort'];
-            $categoryList[$i]['status'] = $row['status'];
+			$platformList[$i]['id'] = $row['id'];
+			$platformList[$i]['name_platforms'] = $row['name_platforms'];
+            $platformList[$i]['sort'] = $row['sort'];
+            $platformList[$i]['status'] = $row['status'];
 			$i++;
 		}
-		return $categoryList;
+		return $platformList;
 	}
     
-    public static function getCategoryById($id) {
+    public static function getPlatformById($id) {
 		$id = intval($id);
 		if($id) {
 
 			$db = Db::dbConnection();
 			
-			$result = $db->query('SELECT * FROM platforms WHERE id='.$id);
+			$sql = 'SELECT * FROM platforms WHERE id = :id';
+            $result = $db->prepare($sql);
+            $result->bindParam(':id',$id,PDO::PARAM_INT);
+            $result->execute();
 			$result->setFetchMode(PDO::FETCH_ASSOC);
 			$productItem = $result->fetch();
 			return $productItem;
 		}
 	}
     
-    public static function deleteCategoryById($id) {
+    public static function deletePlatformById($id) {
         $db = Db::dbConnection();
         $sql = "DELETE FROM platforms WHERE id = :id";
         $result = $db->prepare($sql);
@@ -60,7 +63,7 @@ class Category {
         return $result->execute();
     }
     
-    public static function createCategory($option) {
+    public static function createPlatform($option) {
         $db = Db::dbConnection();  
         
         $sql = "INSERT INTO platforms ( name_platforms, sort, status ) "
@@ -76,7 +79,7 @@ class Category {
         return 0;
     }
     
-    public static function updateCategory($id, $option) {
+    public static function updatePlatform($id, $option) {
         $db = Db::dbConnection();  
         
         $sql = "UPDATE platforms SET  "

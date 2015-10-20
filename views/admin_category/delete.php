@@ -12,7 +12,7 @@
     <form method="POST">
         <div class="modal-footer ">
         <input type="submit" name="submit" class="btn btn-success" value="Да"></input>
-        <a href="/evkazolinAdminka/category/" class="btn btn-default" data-dismiss="modal">Нет</a>
+        <a href="/evkazolinAdminka/platform/" class="btn btn-default" data-dismiss="modal">Нет</a>
       </div>
     </form>
         </div>

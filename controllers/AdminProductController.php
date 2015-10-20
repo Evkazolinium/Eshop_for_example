@@ -28,13 +28,16 @@ class AdminProductController extends AdminBase {
     
     public function actionCreate() {
         self::validateAdmin();
-        $categoryList = Category::getCategoryListByAdmin();
+        $platformList = Platform::getPlatformListByAdmin();
+        
+		$genreList = Genre::getGenresListByAdmin();
         
         if(isset($_POST['submit'])) {
             $option['code'] = $_POST['code'];
             $option['name'] = $_POST['name'];
             $option['price'] = $_POST['price'];
             $option['platform_id'] = $_POST['platform_id'];
+            $option['genre_id'] = $_POST['genre_id'];
             $option['brand'] = $_POST['brand'];
             $option['description'] = $_POST['description'];
             $option['availability'] = $_POST['availability'];
@@ -52,7 +55,7 @@ class AdminProductController extends AdminBase {
                 if($id) {
                     if(is_uploaded_file($_FILES['image']['tmp_name'])) {
                         move_uploaded_file($_FILES['image']['tmp_name'], 
-                                            $_SERVER["DOCUMENT_ROOT"]."/upload/images/products/($id).jpg");
+                                            $_SERVER["DOCUMENT_ROOT"]."/upload/images/products/(".$id.").png");
                     }
                 }
                 header("Location: /evkazolinAdminka/product/");
@@ -64,7 +67,8 @@ class AdminProductController extends AdminBase {
     }
     public function actionUpdate($id) {
         self::validateAdmin();
-        $categoryList = Category::getCategoryListByAdmin();
+        $platformList = Platform::getPlatformListByAdmin();
+        $genreList = Genre::getGenresListByAdmin();
         $product = Products::getProductById($id);
         
         if(isset($_POST['submit'])) {
@@ -72,6 +76,7 @@ class AdminProductController extends AdminBase {
             $option['name'] = $_POST['name'];
             $option['price'] = $_POST['price'];
             $option['platform_id'] = $_POST['platform_id'];
+            $option['genre_id'] = $_POST['genre_id'];
             $option['brand'] = $_POST['brand'];
             $option['description'] = $_POST['description'];
             $option['availability'] = $_POST['availability'];
@@ -84,11 +89,11 @@ class AdminProductController extends AdminBase {
                 $errors[] = "Введите имя товара"; 
             }
             if($errors == false) {
-                $id = Products::updateProduct($id, $option);
+                Products::updateProduct($id, $option);
                 if($id) {
                     if(is_uploaded_file($_FILES['image']['tmp_name'])) {
                         move_uploaded_file($_FILES['image']['tmp_name'],
-                                           $_SERVER["DOCUMENT_ROOT"]."/upload/images/products/($id).jpg");
+                                           $_SERVER["DOCUMENT_ROOT"]."/upload/images/products/(".$id.").png");
                     }
                 }
             }

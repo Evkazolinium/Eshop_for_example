@@ -1,7 +1,7 @@
 <?php
 class Products {
 	
-	const SHOW_BY_DEFAULT = 2;
+	const SHOW_BY_DEFAULT = 6;
 	
 	public static function getProducts($count = self::SHOW_BY_DEFAULT, $page = 1) {
 		
@@ -10,7 +10,7 @@ class Products {
 		$db = Db::dbConnection();
 		$offset = ($page - 1) * $count;
 		$productList = array();
-		$result = $db->query('SELECT id, name, price, image, is_new '
+		$result = $db->query('SELECT id, name, price, is_new '
 							.'FROM products '
 							.'WHERE status = "1" '
 							.'ORDER BY id DESC '
@@ -38,14 +38,15 @@ class Products {
     public static function createProduct($option) {
         $db = Db::dbConnection();  
         
-        $sql = "INSERT INTO products ( name, platform_id, code, price, availability, "
+        $sql = "INSERT INTO products ( name, genre_id, platform_id, code, price, availability, "
                 ." brand, description, is_new, is_recomend, status ) "
-                ." VALUES ( :name, :platform_id, :code, :price, :availability, "
+                ." VALUES ( :name, :genre_id, :platform_id, :code, :price, :availability, "
                 ." :brand, :description, :is_new, :is_recomend, :status ) ";
         
         $result = $db->prepare($sql);
         $result->bindParam(':name', $option['name'], PDO::PARAM_STR);
         $result->bindParam(':platform_id', $option['platform_id'], PDO::PARAM_INT);
+        $result->bindParam(':genre_id', $option['genre_id'], PDO::PARAM_INT);
         $result->bindParam(':code', $option['code'], PDO::PARAM_INT);
         $result->bindParam(':price', $option['price'], PDO::PARAM_STR);
         $result->bindParam(':availability', $option['availability'], PDO::PARAM_INT);
@@ -64,7 +65,7 @@ class Products {
         $db = Db::dbConnection();  
         
         $sql = "UPDATE products SET  "
-                ." name = :name, platform_id = :platform_id, "
+                ." name = :name, genre_id = :genre_id, platform_id = :platform_id, "
                 ." code = :code, price = :price, availability = :availability, "
                 ." brand = :brand, description = :description, is_new = :is_new, "
                 ." is_recomend = :is_recomend, status = :status  "
@@ -74,6 +75,7 @@ class Products {
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->bindParam(':name', $option['name'], PDO::PARAM_STR);
         $result->bindParam(':platform_id', $option['platform_id'], PDO::PARAM_INT);
+        $result->bindParam(':genre_id', $option['genre_id'], PDO::PARAM_INT);
         $result->bindParam(':code', $option['code'], PDO::PARAM_INT);
         $result->bindParam(':price', $option['price'], PDO::PARAM_STR);
         $result->bindParam(':availability', $option['availability'], PDO::PARAM_INT);
@@ -86,32 +88,57 @@ class Products {
     }
 	
 	
-	public static function getProductsListByCategory($categoryId = false, $page) {
+	public static function getProductsListByPlatform($platformId = false, $page) {
 		
-		if($categoryId) {
+		if($platformId) {
 			$page = intval($page);
 			$offset = ($page - 1) * self::SHOW_BY_DEFAULT;
 			$db = Db::dbConnection();
 			
 			
 			$product = array();
-			$result = $db->query("SELECT id, name, price, image, is_new "
-								."FROM products "
-								."WHERE status = '1' AND platform_id = '$categoryId' "
-								."ORDER BY id ASC "
-								."LIMIT ".self::SHOW_BY_DEFAULT." OFFSET ".$offset);
+            $sql = "SELECT id, name, price, is_new FROM products "
+                    ."WHERE status = '1' AND platform_id = ".$platformId." "
+                    ."ORDER BY id DESC LIMIT ".self::SHOW_BY_DEFAULT." OFFSET ".$offset;
+            $result = $db->query($sql);
 			$i = 0;
 			while($row = $result->fetch()) {
 				$product[$i]['id'] = $row['id'];
 				$product[$i]['name'] = $row['name'];
 				$product[$i]['price'] = $row['price'];
-				$product[$i]['image'] = $row['image'];
 				$product[$i]['is_new'] = $row['is_new'];
 				$i++;
 			}
 			return $product;
 		}
 	}
+    
+    	public static function getProductsListByGenre($genreId = false, $page) {
+		
+		if($genreId) {
+			$page = intval($page);
+			$offset = ($page - 1) * self::SHOW_BY_DEFAULT;
+			$db = Db::dbConnection();
+			
+			
+			$product = array();
+            $sql = "SELECT id, name, price, is_new FROM products "
+                    ."WHERE status = '1' AND genre_id = ".$genreId." "
+                    ."ORDER BY id DESC LIMIT ".self::SHOW_BY_DEFAULT." OFFSET ".$offset;
+            $result = $db->query($sql);
+			$i = 0;
+			while($row = $result->fetch()) {
+				$product[$i]['id'] = $row['id'];
+				$product[$i]['name'] = $row['name'];
+				$product[$i]['price'] = $row['price'];
+				$product[$i]['is_new'] = $row['is_new'];
+				$i++;
+			}
+			return $product;
+		}
+	}
+    
+    
 	public static function getProductById($id) {
 		$id = intval($id);
 		if($id) {
@@ -125,6 +152,14 @@ class Products {
 			$productItem = $result->fetch();
 			return $productItem;
 		}
+	}
+    public static function getImage($id) {
+		$notFoundImage = "/upload/images/products/320X150.png";
+        $path = "/upload/images/products/(".$id.").png";
+        if(file_exists($_SERVER["DOCUMENT_ROOT"].$path)) {
+            return $path;
+        }
+        return $notFoundImage;
 	}
     
     public static function getProductlistById($idArray) {
@@ -146,11 +181,26 @@ class Products {
 		}
 		return $products;
     }
-	public static function getTotalProductInCategory($categoryId) {
+	public static function getTotalProductInPlatform($platformId) {
 		$db = Db::dbConnection();
-		$result = $db->query('SELECT count(id) AS count '
+		$sql = 'SELECT count(id) AS count '
 							.'FROM products ' 
-							."WHERE status = '1' AND platform_id = '$categoryId' ");
+							."WHERE status = '1' AND platform_id = :platformId ";
+        $result = $db->prepare($sql);
+        $result->bindParam(':platformId', $platformId, PDO::PARAM_INT);
+        $result->execute();
+		$result->setFetchMode(PDO::FETCH_ASSOC);
+		$row = $result->fetch();
+		return $row['count'];
+	}
+    public static function getTotalProductInGenre($genreId) {
+		$db = Db::dbConnection();
+		$sql = 'SELECT count(id) AS count '
+							.'FROM products ' 
+							."WHERE status = '1' AND genre_id = :genreId";
+        $result = $db->prepare($sql);
+        $result->bindParam(':genreId', $genreId, PDO::PARAM_INT);
+        $result->execute();
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		$row = $result->fetch();
 		return $row['count'];

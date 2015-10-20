@@ -16,6 +16,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="/template/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/template/js/register.js"></script>
+nouislider
 	<script>
 		$(document).ready(function(){
 			$(".add-to-basket").click(function(){

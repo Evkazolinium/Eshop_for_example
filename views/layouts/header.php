@@ -3,21 +3,14 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Shop Homepage - Start Bootstrap Template</title>
-
-    <!-- Bootstrap Core CSS -->
     <link href="/template/css/bootstrap.css" rel="stylesheet">
 	<link href="/template/css/register.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
     <link href="/template/css/view-product.css" rel="stylesheet">
     <link href="/template/css/shop-homepage.css" rel="stylesheet">
+    <!-- In <head> -->
+
+    <!-- In <body> -->
 
 </head>
 
@@ -41,24 +34,21 @@
 							<span id="basket-count"> <?=Basket::countItem();?> </span>
 							</a>
 						</li>
-						<?if(User::isGuest()):?>
+						<?php if(User::isGuest()):?>
 						<li>
 							<a class="navbar-brand" href="/user/login/">Вход</a>
 						</li>
 						<li>
 							<a class="navbar-brand" href="/user/register/">Регистрация</a>
 						</li>
-						<?else:?>
+						<?php else:?>
 						<li>
 							<a class="navbar-brand" href="/cabinet/">Личный кабинет</a>
 						</li>
 						<li>
 							<a class="navbar-brand" href="/user/logout/">Выход</a>
 						</li>
-						<?endif;?>
-						<li>
-							<a class="navbar-brand" href="/about/">О нас</a>
-						</li>
+						<?php endif;?>
 						<li>
 							<a class="navbar-brand" href="/contact/">Контакты</a>
 						</li>

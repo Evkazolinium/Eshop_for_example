@@ -41,7 +41,7 @@
                 </div>
             <div class="form-group">
              <div class="col-md-12 text-right">
-                <a href="/evkazolinAdminka/product/" class="btn btn-primary btn-lg">Назад</a>
+                <a href="/evkazolinAdminka/platform/" class="btn btn-primary btn-lg">Назад</a>
               </div>
             </div>
           </fieldset>

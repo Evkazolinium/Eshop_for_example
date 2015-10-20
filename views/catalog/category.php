@@ -5,46 +5,45 @@
 
 	<div class="row">
 
-		<div class="col-md-3">
+  	<div class="col-md-3">
 			<p class="lead">Платформы</p>
 			<div class="list-group">
-				<?php foreach($categories as $categoryItem) :?>
-						<a href="/category/<?=$categoryItem['id'];?>"
-							class="<? if($categoryItem['id'] == $categoryId) echo 'list-group-item-active'; else echo 'list-group-item';?>">
-							<?=$categoryItem['name_platforms'];?></a>
-					<? endforeach;?>
+				<?php foreach($platforms as $platformItem) :?>
+					<a href="/platform/<?=$platformItem['id'];?>" class="list-group-item <? if($platformId == $platformItem['id']) echo 'active';?>"><?=$platformItem['name_platforms'];?></a>
+				<? endforeach;?>
+			</div>
+            <p class="lead">Жанры</p>
+			<div class="list-group">
+				<?php foreach($genres as $genreItem) :?>
+					<a href="/genre/<?=$genreItem['id'];?>" class="list-group-item <? if($genreId == $genreItem['id']) echo 'active';?>"><?=$genreItem['name'];?></a>
+				<? endforeach;?>
 			</div>
 		</div>
-
 		<div class="col-md-9">
+            <?php if(!empty($products)):?>
 
-			<div class="row">
-				
-				<?php foreach($categoryProduct as $product) :?>
-				
-				<div class="col-sm-4 col-lg-4 col-md-4">
-					<div class="thumbnail">
-					<img src="/template/images/320x150.png">
-						<div class="caption">
-							<a href="/product/<?=$product['id']?>"><?=$product['name']?></a></h5>
-							<p><h4 ><?=$product['price']?> грн.</h4></p>
-							<a href="#" data-id="<?=$product['id'];?>" class="btn btn-success add-to-basket">Купить</a>
-						</div>
-							<a href="" class="pull-right">&nbsp<?=Comment::countCommentsByProduct($product['id']);?> отзывов</a>
-						<div class="ratings">
-							<p class="pull-right">
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-							</p>
-						</div>
-					</div>
-				</div>
-				<?php endforeach;?>
-			</div>
+                <div class="row">
+                    <?php foreach($products as $product) :?>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                        <img src="<?=Products::getImage($product['id']); ?>">
+                            <div class="caption">
+                                <a href="/product/<?=$product['id']?>"><?=$product['name']?></a></h5>
+                                <p><h4 ><?=$product['price']?> грн.</h4></p>
+                                <a href="#" data-id="<?=$product['id'];?>" class="btn btn-success add-to-basket">Купить</a>
+                            </div>
+                            <div class="ratings">
+                                <a href="" class="pull-right">&nbsp<?=Comment::countCommentsByProduct($product['id']);?> отзывов</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach;?>
+                </div>
 				<?=$pagination->get();?>
+            <?php else: ?> 
+                <?="<h2>Раздел наполняется...</h2>";?>
+            <?php endif; ?>
 
 		</div>
 

@@ -10,7 +10,7 @@
               <?php if($result):?>
               <p>Заказ оформлен мы Вам перезвоним</p>
               <?php else:?>
-                  <p>Выбранно товаров: <?=$totalQuantity?> шт, на сумму: <?=$totalPrice?> грн.</p>
+                  <p>Выбранно товаров: <?=$totalQuantity?> шт, на сумму: <?=$total;?> грн.</p>
                   <?php if(isset($errors) && is_array($errors)):?>
                      <ul>
                     <?php foreach($errors as $error):?>
@@ -37,7 +37,7 @@
                 <div class="form-group">
                   <label class="col-md-3 control-label" for="phone">Ваш телефон</label>
                   <div class="col-md-9">
-                    <input id="phone" name="phone" type="phone" placeholder="Пожалуйста, введите ваш телефон здесь..." class="form-control">
+                    <input id="phone" name="phone" type="phone" placeholder="(066) 906-0907" class="form-control">
                   </div>
                 </div>
                 <!-- Message body -->

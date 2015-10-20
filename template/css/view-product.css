@@ -15,12 +15,11 @@
 *********************************************/
 
 .product{
-	border: 1px solid #dddddd;
 	height: 321px;
 }
 
 .product>img{
-	max-width: 230px;
+	max-width: 400px;
 }
 
 .product-rating{
@@ -72,7 +71,7 @@
 .view-wrapper {
 	float: right;
 	max-width: 70%;
-	margin-top: 25px;
+	margin-top: 15px;
 }
 
 .container {
@@ -102,9 +101,7 @@
 	float: left;
 	position: relative;
 	padding-right: 20px;
-	border-right: 1px solid #DDD;
-	border-top: 1px solid #DDD;
-	border-bottom: 1px solid #DDD;
+
 }
 
 .service1-item > img {

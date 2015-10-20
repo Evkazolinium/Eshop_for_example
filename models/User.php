@@ -25,6 +25,12 @@ class User {
 	public static function validateEmail($value) {
 		return filter_var($value, FILTER_VALIDATE_EMAIL);
 	}
+    public static function validatePhone($value) {
+        if(preg_match("/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/", $value)) {
+            return true;
+        }
+        return false;
+    }
 	public static function validateEmailExist($value) {
 		$db = Db::dbConnection();
 		$sql = 'SELECT COUNT(*) FROM users WHERE email = :email ';

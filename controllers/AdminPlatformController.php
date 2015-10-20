@@ -1,11 +1,11 @@
 <?php
-class AdminCategoryController extends AdminBase {
+class AdminPlatformController extends AdminBase {
     
     public function actionIndex() {
         self::validateAdmin();
         
-        $categoryList = array();
-		$categoryList = Category::getCategoryListByAdmin();
+        $platformList = array();
+		$platformList = platform::getPlatformListByAdmin();
         
         require_once(ROOT.'/views/admin_category/index.php');
         return true;
@@ -14,8 +14,8 @@ class AdminCategoryController extends AdminBase {
     public function actionDelete($id){
         self::validateAdmin();
         if(isset($_POST['submit'])) {  
-            Category::deleteCategoryById($id);
-            header("Location: /evkazolinAdminka/category/");
+            platform::deletePlatformById($id);
+            header("Location: /evkazolinAdminka/platform/");
         }
         require_once(ROOT.'/views/admin_category/delete.php');
         return true;
@@ -35,8 +35,8 @@ class AdminCategoryController extends AdminBase {
                 print_r($errors);
             }
             if($errors == false) {
-                $id = Category::createCategory($option);
-                header("Location: /evkazolinAdminka/category/");
+                $id = Platform::createPlatform($option);
+                header("Location: /evkazolinAdminka/platform/");
             }
 
         }
@@ -46,7 +46,7 @@ class AdminCategoryController extends AdminBase {
     
     public function actionUpdate($id) {
         self::validateAdmin();
-        $category = Category::getCategoryById($id);
+        $platform = platform::getPlatformById($id);
         
         if(isset($_POST['submit'])) {
             $option['name_platforms'] = $_POST['name_platforms'];
@@ -59,7 +59,7 @@ class AdminCategoryController extends AdminBase {
                 print_r($errors);
             }
             if($errors == false) {
-                $id = Category::updateCategory($id, $option);
+                $id = platform::updatePlatform($id, $option);
                 header("Location: /evkazolinAdminka/category/");
             }
 

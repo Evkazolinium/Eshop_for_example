@@ -9,8 +9,6 @@
                 </h5>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a href="/cabinet/edit/">Редактировать личные данные</a></li>
-                    <li><a href="#">Список покупок</a></li>
-                    <li><a href="#">Мои отзывы</a></li>
             </div>
         </div>
         <div class="col-md-8">

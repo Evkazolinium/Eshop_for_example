@@ -3,7 +3,7 @@
 	<div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div class="well well-sm">
-          <form class="form-horizontal" action="" method="post">
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
           <fieldset>
             <legend class="text-center">Редактирование товара</legend>
     
@@ -36,8 +36,23 @@
               </div>
             </div>
             <div class="form-group">
+              <label class="col-md-3 control-label" for="genre_id">Жанр</label>
+              <div class="col-md-9">
+                <select id="genre_id" name="genre_id"  class="form-control">
+                    <?php if(is_array($genreList)):?>
+                        <?php foreach($genreList as $genre):?>
+                           <option value="<?=$genre['id'];?>">
+                               <?=$genre['name'];?>
+                           </option>
+                        <?php endforeach;?>
+                    <?php endif;?>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
               <label class="col-md-3 control-label" for="image">Изображение</label>
               <div class="col-md-9">
+                <img src="<?=Products::getImage($product['id']); ?>" alt="">
                 <input id="image" name="image" type="file"  class="form-control">
               </div>
             </div>
@@ -45,11 +60,11 @@
               <label class="col-md-3 control-label" for="platform_id">Платформа</label>
               <div class="col-md-9">
                 <select id="platform_id" name="platform_id"  class="form-control">
-                    <?php if(is_array($categoryList)):?>
-                        <?php foreach($categoryList as $category):?>
-                           <option value="<?=$category['id'];?>"  
-                               <?php if($category['id'] == $product['platform_id']) echo "selected='selected'"?>>
-                               <?=$category['name_platforms'];?>
+                    <?php if(is_array($platformList)):?>
+                        <?php foreach($platformList as $platform):?>
+                           <option value="<?=$platform['id'];?>"  
+                               <?php if($cplatform['id'] == $product['platform_id']) echo "selected='selected'"?>>
+                               <?=$platform['name_platforms'];?>
                            </option>
                         <?php endforeach;?>
                     <?php endif;?>
@@ -59,7 +74,7 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="description">Описание товара</label>
               <div class="col-md-9">
-                <textarea class="form-control" id="description" name="description" value="<?=$product['description'];?>" rows="5"></textarea>
+                <textarea class="form-control" id="description" name="description" rows="5"><?=$product['description'];?></textarea>
               </div>
             </div>
             <div class="form-group">

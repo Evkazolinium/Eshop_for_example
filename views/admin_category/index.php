@@ -9,7 +9,7 @@
         
             <div class="table-responsive">
                 <div class="col-md-12">
-                     <a href="/evkazolinAdminka/category/create" class="btn btn-lg btn-primary">
+                     <a href="/evkazolinAdminka/platform/create" class="btn btn-lg btn-primary">
                     <span class="glyphicon glyphicon-plus"></span> Добавить категорию</a>  
                 </div>
             </div>
@@ -27,17 +27,17 @@
                       
                        <th>Удалить</th>
                    </thead>
-<?php foreach($categoryList as $category):?>
+<?php foreach($platformList as $platform):?>
     <tbody>
     
     <tr>
     <td><input type="checkbox" class="checkthis" /></td>
-    <td><?=$category['id'];?></td>
-    <td><?=$category['name_platforms']?></td>
-    <td><?=$category['sort']?></td>
-    <td><?=$category['status']?></td>
-    <td><a href="/evkazolinAdminka/category/update/<?=$category['id'];?>" class="btn btn-primary btn-xs" ><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><p><a href="/evkazolinAdminka/category/delete/<?=$category['id'];?>"  class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></p></td>
+    <td><?=$platform['id'];?></td>
+    <td><?=$platform['name_platforms']?></td>
+    <td><?=$platform['sort']?></td>
+    <td><?=$platform['status']?></td>
+    <td><a href="/evkazolinAdminka/platform/update/<?=$platform['id'];?>" class="btn btn-primary btn-xs" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+    <td><p><a href="/evkazolinAdminka/platform/delete/<?=$platform['id'];?>"  class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></p></td>
     </tr>
     </tbody>
 <?php endforeach;?>

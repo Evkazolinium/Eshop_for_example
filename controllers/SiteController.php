@@ -2,9 +2,12 @@
 class SiteController {
 	public function actionIndex() {
 		
-		$categories = array();
-		$categories = Category::getCategoryList();
+		$platforms = array();
+		$platforms = Platform::getPlatformList();
 		
+        $genres = array();
+		$genres = Genre::getGenreList();
+        
 		$productList = array();
 		$productList = Products::getProducts(6);
 		require_once(ROOT.'/views/site/index.php');
@@ -22,8 +25,7 @@ class SiteController {
 			$subject = $_POST['subject'];
 			
 			$errors = false;
-			
-			if(User::validateEmail($userEmail)) {
+			if(!User::validateEmail($userEmail)) {
 				$errors[] = "Неправильный Email";
 			}
 			if($errors == false) {

@@ -20,13 +20,13 @@ class BasketController {
 		return true;
 	}
 	public function actionOrder() {
-		$category = array();
+		$platform = array();
         $errors = array();
         $userName = '';
         $userEmail = '';
         $userPhone = '';
         $userComment = '';
-		$category = Category::getCategoryList();
+		$platform = Platform::getPlatformList();
 		
 		$result = false;
 		
@@ -44,10 +44,10 @@ class BasketController {
             if(!User::validateEmail($userEmail)){
                 $errors[] = "Неверный Email";
             }
-        /*    if(User::validatePhone($userPhone)){
+            if(!User::validatePhone($userPhone)){
                 $errors[] = "Неккоректный телефон";
             }
-        */
+        
         
             if($errors == false) {
                 $productsBasket = Basket::getProducts();
@@ -70,6 +70,7 @@ class BasketController {
                 $productId = array_keys($productsInBasket);
                 $products = Products::getProductsByIdInBasket($productId);
                 $totalPrice = Basket::getTotalPrice($products);
+                $total = array_sum($totalPrice);
                 $totalQuantity = Basket::countItem();               
             }
                 
