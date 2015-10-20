@@ -22,6 +22,10 @@
 
 			<div class="row">
 				
+<<<<<<< HEAD
+=======
+                    <?php include('/template/rating/rating.php'); ?>
+>>>>>>> 7769891b2a92629c9fccac6a4543af8c5b87f4f5
 				<?php foreach($productList as $productItem) :?>
 				
 				<div class="col-sm-4 col-lg-4 col-md-4">

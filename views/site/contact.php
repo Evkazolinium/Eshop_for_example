@@ -3,6 +3,7 @@
 	<div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div class="well well-sm">
+<<<<<<< HEAD
             <?php if(isset($errors) && is_array($errors)):?>
                 <ul>
                     <?foreach($errors as $error):?>
@@ -10,6 +11,8 @@
                     <?endforeach;?>
                 </ul>
             <?endif;?>
+=======
+>>>>>>> 7769891b2a92629c9fccac6a4543af8c5b87f4f5
           <form class="form-horizontal" action="" method="post">
           <fieldset>
             <legend class="text-center">Свяжитесь с нами</legend>
@@ -47,7 +50,11 @@
             <!-- Form actions -->
             <div class="form-group">
               <div class="col-md-12 text-right">
+<<<<<<< HEAD
                 <button type="submit" name="submit" class="btn btn-primary btn-lg">Отправить</button>
+=======
+                <button type="submit" class="btn btn-primary btn-lg">Отправить</button>
+>>>>>>> 7769891b2a92629c9fccac6a4543af8c5b87f4f5
               </div>
             </div>
           </fieldset>
