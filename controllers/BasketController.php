@@ -60,8 +60,7 @@ class BasketController {
                 if($result) {
                     $adminEmail = "alexey.vnu@gmail.com";
                     $subject = "Новый заказ";
-                    $message = "";
-                    mail($adminEmail, $subject, $message);
+                    mail($adminEmail, $subject, $userComment);
                     
                     Basket::clear();
                 }
