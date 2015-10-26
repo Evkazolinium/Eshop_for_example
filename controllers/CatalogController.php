@@ -1,25 +1,22 @@
 <?php
 class CatalogController {
-	public function actionIndex($page = 1) {
+	public function actionIndex($fromPrice = '', $beforePrice = '',  $page = 1) {
 		$count = 6;
 		$platforms = array();
 		$platforms = Platform::getPlatformList();
         
         $genres = array();
 		$genres = Genre::getGenreList();
-        
 		$productList = array();
-        
-		$productList = Products::getProducts($count, $page);
-		
-		$total = Products::getTotalProductInCatalog();
+		$productList = Products::getProducts($count, $page, $fromPrice, $beforePrice);
+		$total = Products::getTotalProductInCatalog($fromPrice, $beforePrice);
 		$pagination = new Pagination($total, $page, $count, 'page-');
 
 		require_once(ROOT.'/views/catalog/index.php');
 		
 		return true;
 	}
-	public function actionPlatform($platformId, $page = 1) {
+	public function actionPlatform($platformId, $fromPrice = '', $beforePrice = '',  $page = 1) {
 		$platforms = array();
 		$platforms = Platform::getPlatformList();
         
@@ -27,9 +24,8 @@ class CatalogController {
 		$genres = Genre::getGenreList();
         
 		$products = array();
-		$products = Products::getProductsListByPlatform($platformId, $page);
-		
-		$total = Products::getTotalProductInPlatform($platformId);
+		$products = Products::getProductsListByPlatform($fromPrice, $beforePrice, $platformId, $page);
+		$total = Products::getTotalProductInPlatform($fromPrice, $beforePrice, $platformId);
 		$pagination = new Pagination($total, $page, Products::SHOW_BY_DEFAULT, 'page-');
 		
 		require_once(ROOT.'/views/catalog/category.php');

@@ -12,12 +12,8 @@
 					<a href="/platform/<?=$platformItem['id'];?>" class="list-group-item <? if($platformId == $platformItem['id']) echo 'active';?>"><?=$platformItem['name_platforms'];?></a>
 				<? endforeach;?>
 			</div>
-            <p class="lead">Жанры</p>
-			<div class="list-group">
-				<?php foreach($genres as $genreItem) :?>
-					<a href="/genre/<?=$genreItem['id'];?>" class="list-group-item <? if($genreId == $genreItem['id']) echo 'active';?>"><?=$genreItem['name'];?></a>
-				<? endforeach;?>
-			</div>
+        <div id="platform"></div>
+        <? include ROOT.'/views/layouts/sort.php';?>
 		</div>
 		<div class="col-md-9">
             <?php if(!empty($products)):?>

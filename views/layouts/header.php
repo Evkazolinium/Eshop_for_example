@@ -8,6 +8,8 @@
 
     <link href="/template/css/view-product.css" rel="stylesheet">
     <link href="/template/css/shop-homepage.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/template/css/sort.css" />
+
     <!-- In <head> -->
 
     <!-- In <body> -->

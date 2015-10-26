@@ -3,18 +3,22 @@ class Products {
 	
 	const SHOW_BY_DEFAULT = 6;
 	
-	public static function getProducts($count = self::SHOW_BY_DEFAULT, $page = 1) {
+	public static function getProducts($count = self::SHOW_BY_DEFAULT, $page = 1, $fromPrice = '', $beforePrice = '') {
 		
 		$count = intval($count);
 		$page = intval($page);
 		$db = Db::dbConnection();
 		$offset = ($page - 1) * $count;
 		$productList = array();
-		$result = $db->query('SELECT id, name, price, is_new '
-							.'FROM products '
-							.'WHERE status = "1" '
-							.'ORDER BY id DESC '
-							.'LIMIT '.$count." OFFSET ".$offset);
+        $sql = 'SELECT id, name, price, is_new FROM products WHERE status = "1" ';
+        if(!empty($beforePrice) || !empty($fromPrice)) {
+            $beforePrice = intval($beforePrice);
+            $fromPrice = intval($fromPrice);
+            $sql .= ' AND price >= '.$fromPrice.' AND price <= '.$beforePrice;
+        }
+        
+        $sql .= ' ORDER BY id DESC  LIMIT '.$count." OFFSET ".$offset;
+		$result = $db->query($sql);
 		$i = 0;
 		while($row = $result->fetch()) {
 			$productList[$i]['id'] = $row['id'];
@@ -26,6 +30,7 @@ class Products {
 		}
 		return $productList;
 	}
+    
     // Remove. Takes id (int)
     public static function deleteProductById($id) {
         $db = Db::dbConnection();
@@ -88,7 +93,7 @@ class Products {
     }
 	
 	
-	public static function getProductsListByPlatform($platformId = false, $page) {
+	public static function getProductsListByPlatform($fromPrice = '', $beforePrice = '', $platformId = false, $page) {
 		
 		if($platformId) {
 			$page = intval($page);
@@ -97,9 +102,15 @@ class Products {
 			
 			
 			$product = array();
-            $sql = "SELECT id, name, price, is_new FROM products "
-                    ."WHERE status = '1' AND platform_id = ".$platformId." "
-                    ."ORDER BY id DESC LIMIT ".self::SHOW_BY_DEFAULT." OFFSET ".$offset;
+            
+            $sql = "SELECT id, name, price, is_new FROM products WHERE status = '1' AND platform_id = ".$platformId." ";
+                
+            if(!empty($beforePrice) || !empty($fromPrice)) {
+                $beforePrice = intval($beforePrice);
+                $fromPrice = intval($fromPrice);
+                $sql .= ' AND price >= '.$fromPrice.' AND price <= '.$beforePrice;
+            }
+            $sql .= " ORDER BY id DESC LIMIT ".self::SHOW_BY_DEFAULT." OFFSET ".$offset;
             $result = $db->query($sql);
 			$i = 0;
 			while($row = $result->fetch()) {
@@ -112,6 +123,10 @@ class Products {
 			return $product;
 		}
 	}
+    
+    public static function sortProducts() {
+        
+    } 
     
     	public static function getProductsListByGenre($genreId = false, $page) {
 		
@@ -168,7 +183,6 @@ class Products {
 		$sql = 'SELECT * '
 				.'FROM products '
 				.'WHERE products.status="1" AND products.id IN ( '.$idString.' ) ';
-		//echo $sql;
 		$result = $db->query($sql);
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		$i = 0;
@@ -181,11 +195,16 @@ class Products {
 		}
 		return $products;
     }
-	public static function getTotalProductInPlatform($platformId) {
+	public static function getTotalProductInPlatform($fromPrice = '', $beforePrice = '', $platformId ) {
 		$db = Db::dbConnection();
 		$sql = 'SELECT count(id) AS count '
 							.'FROM products ' 
 							."WHERE status = '1' AND platform_id = :platformId ";
+        if(!empty($beforePrice) || !empty($fromPrice)) {
+            $beforePrice = intval($beforePrice);
+            $fromPrice = intval($fromPrice);
+            $sql .= ' AND price >= '.$fromPrice.' AND price <= '.$beforePrice;
+        }
         $result = $db->prepare($sql);
         $result->bindParam(':platformId', $platformId, PDO::PARAM_INT);
         $result->execute();
@@ -206,11 +225,15 @@ class Products {
 		return $row['count'];
 	}
 	
-	public static function getTotalProductInCatalog() {
+	public static function getTotalProductInCatalog($fromPrice = '', $beforePrice = '') {
 		$db = Db::dbConnection();
-		$result = $db->query('SELECT count(id) AS count '
-							.'FROM products ' 
-							."WHERE status = '1' ");
+        $sql = 'SELECT count(id) AS count FROM products WHERE status = "1" ';
+        if(!empty($beforePrice) || !empty($fromPrice)) {
+            $beforePrice = intval($beforePrice);
+            $fromPrice = intval($fromPrice);
+            $sql .= ' AND price >= '.$fromPrice.' AND price <= '.$beforePrice;
+        }
+		$result = $db->query($sql);
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		$row = $result->fetch();
 		return $row['count'];

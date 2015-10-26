@@ -42,7 +42,6 @@ class Order {
 		}
 		return $orderList;
 	}
-    
     public static function getOrderById($id) {
         $db = Db::dbConnection();
         $sql = 'SELECT * FROM products_order WHERE id = :id';

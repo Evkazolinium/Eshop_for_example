@@ -27,7 +27,46 @@ body {
 .thumbnail img {
     width: 100%;
 }
+.options-list > li{
+    float: center;
+    margin-left: 10px;
+    font: 14px sans-serif;
+}
+.options-list img {
+    margin-top: -4px;
+    cursor: pointer;
+}
+.options-list {
+    margin-left: -10px;
+}
+.select-sort {
+    color: #748996;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.sorting-list {
+    border: 1p solid #A3C0D2;
+    position: absolute;
+    width: 200px;
+    height: 108px;
+    background-color:  white;
+    padding-top: 5px;
+    display: none;
+}
+.sorting-list li {
+    margin-top: 3px;
+    margin-left: 3px;
+}
+.sorting-list a {
+    font: 15px;
+    text-decoration: none;
+    color: black;
+}
+.sorting-list a:hover {
+    text-decoration: underline;
+        
 
+}
 .ratings {
     padding-right: 10px;
     padding-left: 10px;

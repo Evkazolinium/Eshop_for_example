@@ -1,9 +1,14 @@
 <?php
 return array(
-			'product/([0-9]+)'=> 'product/view/$1',
-			'catalog/page-([0-9]+)'=> 'catalog/index/$1',
+            // filter
+            // default
+            'catalog/price-([0-9]+)-([0-9]+)/page-([0-9]+)'=>'catalog/index/$1/$2/$3',
+            'catalog/price-([0-9]+)-([0-9]+)'=>'catalog/index/$1/$2',
+            'catalog/page-([0-9]+)'=> 'catalog/index/$1',
 			'catalog'=>'catalog/index',
-			'user/register'=>'user/register',
+			//
+			'product/([0-9]+)'=> 'product/view/$1',
+            'user/register'=>'user/register',
 			'user/login'=>'user/login',
 			'user/logout'=>'user/logout',
             // basket panel
@@ -12,10 +17,15 @@ return array(
 			'basket/addAjax/([0-9]+)'=>'basket/addAjax/$1',
 			'basket'=>'basket/index',
 			// category view
+            'platform/([0-9]+)/price-([0-9]+)-([0-9]+)/page-([0-9]+)'=>'catalog/platform/$1/$2/$3/$4',
+			'platform/([0-9]+)/price-([0-9]+)-([0-9]+)'=>'catalog/platform/$1/$2/$3',
             'platform/([0-9]+)/page-([0-9]+)'=>'catalog/platform/$1/$2',
 			'platform/([0-9]+)'=>'catalog/platform/$1',
+            // genre ????
             'genre/([0-9]+)/page-([0-9]+)'=>'catalog/genre/$1/$2',
 			'genre/([0-9]+)'=>'catalog/genre/$1',
+            
+            
             
 			// cabinet view
             'cabinet/edit'=>'cabinet/edit',

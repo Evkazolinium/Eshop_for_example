@@ -1,31 +1,20 @@
 <? include ROOT.'/views/layouts/header.php';?>
-
 <!-- Page Content -->
-<div class="container">
-
+<div class="container">	
 	<div class="row">
        	<div class="col-md-3">
-			<p class="lead">Платформы</p>
+			<p class="lead"><br>Платформы</p>
 			<div class="list-group">
 				<?php foreach($platforms as $platformItem) :?>
 					<a href="/platform/<?=$platformItem['id'];?>" class="list-group-item <? if($platformId == $platformItem['id']) echo 'active';?>"><?=$platformItem['name_platforms'];?></a>
 				<? endforeach;?>
 			</div>
-            <p class="lead">Жанры</p>
-			<div class="list-group">
-				<?php foreach($genres as $genreItem) :?>
-					<a href="/genre/<?=$genreItem['id'];?>" class="list-group-item <? if($genreId == $genreItem['id']) echo 'active';?>"><?=$genreItem['name'];?></a>
-				<? endforeach;?>
-			</div>
+            <div id="catalog"></div>
+            <? include ROOT.'/views/layouts/sort.php';?>
 		</div>
 		<div class="col-md-9">
 
 			<div class="row">
-				
-<<<<<<< HEAD
-=======
-                    <?php include('/template/rating/rating.php'); ?>
->>>>>>> 7769891b2a92629c9fccac6a4543af8c5b87f4f5
 				<?php foreach($productList as $productItem) :?>
 				
 				<div class="col-sm-4 col-lg-4 col-md-4">
@@ -55,4 +44,8 @@
 <div class="container">
 
 	<hr>
+    <script>
+
+    </script>
+
 <? include ROOT.'/views/layouts/footer.php';?>
