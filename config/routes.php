@@ -4,7 +4,7 @@ return array(
             // default
             'catalog/price-([0-9]+)-([0-9]+)/page-([0-9]+)'=>'catalog/index/$1/$2/$3',
             'catalog/price-([0-9]+)-([0-9]+)'=>'catalog/index/$1/$2',
-            'catalog/page-([0-9]+)'=> 'catalog/index/$1',
+            'catalog/page-([0-9]+)'=> 'catalog/index/$2/$3/$1',
 			'catalog'=>'catalog/index',
 			//
 			'product/([0-9]+)'=> 'product/view/$1',
@@ -19,7 +19,7 @@ return array(
 			// category view
             'platform/([0-9]+)/price-([0-9]+)-([0-9]+)/page-([0-9]+)'=>'catalog/platform/$1/$2/$3/$4',
 			'platform/([0-9]+)/price-([0-9]+)-([0-9]+)'=>'catalog/platform/$1/$2/$3',
-            'platform/([0-9]+)/page-([0-9]+)'=>'catalog/platform/$1/$2',
+            'platform/([0-9]+)/page-([0-9]+)'=>'catalog/platform/$1/$3/$4/$2',
 			'platform/([0-9]+)'=>'catalog/platform/$1',
             // genre ????
             'genre/([0-9]+)/page-([0-9]+)'=>'catalog/genre/$1/$2',

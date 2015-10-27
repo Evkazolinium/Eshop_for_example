@@ -1,6 +1,6 @@
 <?php
 class CatalogController {
-	public function actionIndex($fromPrice = '', $beforePrice = '',  $page = 1) {
+	public function actionIndex($fromPrice = '', $beforePrice = '', $page = 1) {
 		$count = 6;
 		$platforms = array();
 		$platforms = Platform::getPlatformList();
@@ -16,13 +16,12 @@ class CatalogController {
 		
 		return true;
 	}
-	public function actionPlatform($platformId, $fromPrice = '', $beforePrice = '',  $page = 1) {
+	public function actionPlatform($platformId, $fromPrice = '', $beforePrice = '', $page = 1) {
 		$platforms = array();
 		$platforms = Platform::getPlatformList();
         
         $genres = array();
 		$genres = Genre::getGenreList();
-        
 		$products = array();
 		$products = Products::getProductsListByPlatform($fromPrice, $beforePrice, $platformId, $page);
 		$total = Products::getTotalProductInPlatform($fromPrice, $beforePrice, $platformId);

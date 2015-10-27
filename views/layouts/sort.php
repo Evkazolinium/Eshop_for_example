@@ -17,27 +17,27 @@
     <form method="post" id="form-price-sort" action="">
         <div id="block-input-price">
             <p>от</p>
-            <input type="text" id="from-price" name="from-price" value="100">
+            <input type="text" id="from-price" name="from-price">
             <p>до</p>
-            <input type="text" id="before-price" name="before-price" value="100">
+            <input type="text" id="before-price" name="before-price">
             <p>грн.</p>
             <div id="sort-price"></div>
             <button type="submit" name="price" class="btn btn-success sort-price">Ok</button>
         </div>
     </form>
-    <!--
-    <form method="GET">
+
+    <form method="GET" id="form-genry-sort" action="">
         <p class="lead">Жанры</p>
         <div class="list-group">
             <ul id="checkbox-category">
-                <li><input type="checkbox" href="catalog/genry" id="check1"><label for="check1">Action</label></li>
+                <li><input type="checkbox" id="check1"><label for="check1">Action</label></li>
                 <li><input type="checkbox" id="check2"><label for="check2">Rpg</label></li>
                 <li><input type="checkbox" id="check3"><label for="check3">Стратегии</label></li>
                 <li><input type="checkbox" id="check4"><label for="check4">Приключения</label></li>
             </ul>
+            <button type="submit" name="genry" class="btn btn-success sort-genry">Ok</button>
         </div>
     </form>
-    -->
 </div>
 
 
