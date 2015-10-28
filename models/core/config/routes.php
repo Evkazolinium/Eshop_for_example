@@ -2,36 +2,36 @@
 return array(
             // filter
             // default
-            'catalog/price-([0-9]+)-([0-9]+)/page-([0-9]+)$'=>'catalog/index/$1/$2/$3',
-            'catalog/price-([0-9]+)-([0-9]+)$'=>'catalog/index/$1/$2',
-            'catalog/page-([0-9]+)$'=> 'catalog/index/$2/$3/$1',
-			'catalog$'=>'catalog/index',
+            'catalog/price-([0-9]+)-([0-9]+)/page-([0-9]+)'=>'catalog/index/$1/$2/$3',
+            'catalog/price-([0-9]+)-([0-9]+)'=>'catalog/index/$1/$2',
+            'catalog/page-([0-9]+)'=> 'catalog/index/$2/$3/$1',
+			'catalog'=>'catalog/index',
 			//
-			'product/([0-9]+)$'=> 'product/view/$1',
-            'user/register$'=>'user/register',
-			'user/login$'=>'user/login',
-			'user/logout$'=>'user/logout',
+			'product/([0-9]+)'=> 'product/view/$1',
+            'user/register'=>'user/register',
+			'user/login'=>'user/login',
+			'user/logout'=>'user/logout',
             // basket panel
-            'basket/order$'=>'basket/order',
-            'basket/delete/([0-9]+)$'=>'basket/delete/$1',
-			'basket/addAjax/([0-9]+)$'=>'basket/addAjax/$1',
-			'basket$'=>'basket/index',
+            'basket/order'=>'basket/order',
+            'basket/delete/([0-9]+)'=>'basket/delete/$1',
+			'basket/addAjax/([0-9]+)'=>'basket/addAjax/$1',
+			'basket'=>'basket/index',
 			// category view
-            'platform/([0-9]+)/price-([0-9]+)-([0-9]+)/page-([0-9]+)$'=>'catalog/platform/$1/$2/$3/$4',
-			'platform/([0-9]+)/price-([0-9]+)-([0-9]+)$'=>'catalog/platform/$1/$2/$3',
-            'platform/([0-9]+)/page-([0-9]+)$'=>'catalog/platform/$1/$3/$4/$2',
-			'platform/([0-9]+)$'=>'catalog/platform/$1',
+            'platform/([0-9]+)/price-([0-9]+)-([0-9]+)/page-([0-9]+)'=>'catalog/platform/$1/$2/$3/$4',
+			'platform/([0-9]+)/price-([0-9]+)-([0-9]+)'=>'catalog/platform/$1/$2/$3',
+            'platform/([0-9]+)/page-([0-9]+)'=>'catalog/platform/$1/$3/$4/$2',
+			'platform/([0-9]+)'=>'catalog/platform/$1',
             // genre ????
-            'genre/([0-9]+)/page-([0-9]+)$'=>'catalog/genre/$1/$2',
-			'genre/([0-9]+)$'=>'catalog/genre/$1',
+            'genre/([0-9]+)/page-([0-9]+)'=>'catalog/genre/$1/$2',
+			'genre/([0-9]+)'=>'catalog/genre/$1',
             
             
             
 			// cabinet view
-            'cabinet/edit$'=>'cabinet/edit',
-			'cabinet$'=>'cabinet/index',
+            'cabinet/edit'=>'cabinet/edit',
+			'cabinet'=>'cabinet/index',
 			// contact view
-            'contact$'=>'site/contact',
+            'contact'=>'site/contact',
             // product CRUD
             'evkazolinAdminka/product/create'=>'adminProduct/create',
             'evkazolinAdminka/product/update/([0-9]+)'=>'adminProduct/update/$1',

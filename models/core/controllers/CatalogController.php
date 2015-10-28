@@ -8,8 +8,6 @@ class CatalogController {
         $genres = array();
 		$genres = Genre::getGenreList();
 		$productList = array();
-        $fromPrice = intval($fromPrice);
-        $beforePrice = intval($beforePrice);
 		$productList = Products::getProducts($count, $page, $fromPrice, $beforePrice);
 		$total = Products::getTotalProductInCatalog($fromPrice, $beforePrice);
 		$pagination = new Pagination($total, $page, $count, 'page-');
@@ -25,8 +23,6 @@ class CatalogController {
         $genres = array();
 		$genres = Genre::getGenreList();
 		$products = array();
-        $fromPrice = intval($fromPrice);
-        $beforePrice = intval($beforePrice);
 		$products = Products::getProductsListByPlatform($fromPrice, $beforePrice, $platformId, $page);
 		$total = Products::getTotalProductInPlatform($fromPrice, $beforePrice, $platformId);
 		$pagination = new Pagination($total, $page, Products::SHOW_BY_DEFAULT, 'page-');
