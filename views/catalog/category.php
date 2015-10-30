@@ -30,7 +30,7 @@
                                 <a href="#" data-id="<?=$product['id'];?>" class="btn btn-success add-to-basket">Купить</a>
                             </div>
                             <div class="ratings">
-                                <a href="" class="pull-right">&nbsp<?=Comment::countCommentsByProduct($product['id']);?> отзывов</a>
+                                <a href="/product/<?=$product['id']?>" class="pull-right">&nbsp<?=Comment::countCommentsByProduct($product['id']);?> отзывов</a>
                             </div>
                         </div>
                     </div>

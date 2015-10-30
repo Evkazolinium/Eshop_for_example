@@ -1,0 +1,57 @@
+.brdR {
+	border: 4px double black; /* Параметры границы */
+	border-color: #6495ED;
+	border-width: 4px;
+	border-radius: 8px;
+    background: #FFFAFA; /* Цвет фона */
+    padding: 10px;
+	width: 5px;
+    height: 5px;
+}
+#count, #main, h2 {position: absolute; overflow: auto; }
+.count {
+	top: 35px;
+	left: 140px;
+    color: green;
+	font: 24pt sans-serif; 
+}
+h2 {font: 24pt sans-serif; color: green; left: 20px;}
+#main {
+	position: absolute;
+	overflow: auto;
+	padding: 10px;
+	top: 82px;
+	left: 20px;	
+	bottom: 0; right: 0;
+}
+#cover-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9000;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    opacity: 0.3;
+}
+.form {
+	position: absolute;
+	display: inline-block;
+	padding: 5px 5px 5px 70px;
+	width: 200px;
+	border: 1px solid black;
+	vertical-align: middle;
+	top: 82px;
+	left: 700px;	
+}
+
+#form-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	display: none;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}

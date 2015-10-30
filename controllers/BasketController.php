@@ -4,6 +4,22 @@ class BasketController {
 		echo Basket::addProduct($id);
 		return true;
 	}
+    public function actionAddCountAjax($id) {
+        $productsInBasket = false;
+		$productsInBasket = Basket::getProducts();
+		if($productsInBasket) {
+			$productsId = array_keys($productsInBasket);
+			//$platformId = Products::getPlatformByIdInBasket($productsId);
+			
+			$products = Products::getProductsByIdInBasket($productsId);
+/* 			$platformsId = Products::getPlatforms($products);*/
+			$totalPrice = Basket::getTotalPrice($products);
+            $total = array_sum($totalPrice);
+            echo $total;
+		}
+		//echo Basket::addProduct($id);
+		return true;
+	}
 	public function actionIndex() {
 		$productsInBasket = false;
 		$productsInBasket = Basket::getProducts();

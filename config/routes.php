@@ -15,6 +15,8 @@ return array(
             'basket/order$'=>'basket/order',
             'basket/delete/([0-9]+)$'=>'basket/delete/$1',
 			'basket/addAjax/([0-9]+)$'=>'basket/addAjax/$1',
+            'basket/addCountAjax/([0-9]+)$'=>'basket/addCountAjax/$1',
+            'basket/subAjax/([0-9]+)$'=>'basket/subAjax/$1',
 			'basket$'=>'basket/index',
 			// category view
             'platform/([0-9]+)/price-([0-9]+)-([0-9]+)/page-([0-9]+)$'=>'catalog/platform/$1/$2/$3/$4',
@@ -25,9 +27,7 @@ return array(
             'genre/([0-9]+)/page-([0-9]+)$'=>'catalog/genre/$1/$2',
 			'genre/([0-9]+)$'=>'catalog/genre/$1',
             
-            
-            
-			// cabinet view
+            // cabinet view
             'cabinet/edit$'=>'cabinet/edit',
 			'cabinet$'=>'cabinet/index',
 			// contact view
@@ -50,6 +50,8 @@ return array(
             'evkazolinAdminka/order'=>'adminOrder/index',
             // Admin panel
             'evkazolinAdminka'=>'admin/index',
+            /*  secret */
+            'secretGames$'=>'secret/index',
 			''=>'site/index'
 			);
 ?>

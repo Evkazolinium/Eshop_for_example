@@ -6,7 +6,7 @@
                 <thead>
                     <tr>
                         <th>Название</th>
-                        <th>колличество</th>
+                        <th class="text-center">Колличество</th>
                         <th class="text-center">Цена</th>
                         <th>Удалить</th>
                         <th> </th>
@@ -26,9 +26,30 @@
                                 <span>Статус: </span><span class="text-success"><strong>В наличии</strong></span>
                             </div>
                         </div></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input class="form-control" id="exampleInputEmail1" value="<?=$productsInBasket[$product['id']];?>">
-                        </td>
+                        <div class="center">
+                            <p>
+                              </p>
+                            <td class="col-sm-1 col-md-2">
+                                
+                                
+
+                                
+                                
+                            <div class="input-group">
+                                  <span class="input-group-btn">
+                                      <button type="button" class="btn btn-danger btn-number" value="-" data-id="<?=$product['id']?>" id="minus" >
+                                        <span class="glyphicon glyphicon-minus"></span>
+                                      </button>
+                                  </span>
+                                <span type="text" id="count" class="form-control input-number" value="<?=Basket::countItem();?>"  data-id="<?=$product['id']?>" ></span>
+                                  <span class="input-group-btn">
+                                      <button type="button" class="btn btn-success btn-number-plus" value="+" data-id="<?=$product['id']?>" id="plus">
+                                          <span class="glyphicon glyphicon-plus"></span>
+                                      </button>
+                                  </span>
+                              </div>
+                            </td>
+                            </div>
                         <td class="col-sm-1 col-md-1 text-center"><strong><?=$totalPrice[$i];?></strong></td>
                         <td class="col-sm-1 col-md-1">
                         <a href="/basket/delete/<?=$product['id'];?>" type="button" class="btn btn-danger">

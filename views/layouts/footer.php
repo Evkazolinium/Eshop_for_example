@@ -12,7 +12,6 @@
 
     <!-- jQuery -->
     <script src="/template/js/jquery.js"></script>
-    <script src="/template/js/jquery-1.2.3.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/template/js/bootstrap.min.js"></script>
@@ -40,16 +39,24 @@
                     },
                     dual : true, // two intervals
                     width : 180, // px
-                    leftLimit : 100, // unit of value
+                    leftLimit : 1, // unit of value
                     rightLimit : 2000, // unit of value
                     roundUp : 10,
                     <?php if($fromPrice):?>
-                        leftValue : <?=$fromPrice; ?>,
+                        <?php if($fromPrice < 1 || $fromPrice > $beforePrice):?>
+                            leftValue : 1,
+                        <?php else: ?>
+                            leftValue : <?=$fromPrice; ?>,
+                        <?php endif;?>
                     <?php else: ?>
                         leftValue : 300,
                     <?php endif;?>
                     <?php if($beforePrice):?>
-                        rightValue : <?=$beforePrice; ?>,
+                        <?php if($beforePrice > 2000 || $beforePrice < $fromPrice):?>
+                            rightValue : 2000,
+                        <?php else:?>
+                            rightValue : <?=$beforePrice; ?>,
+                        <?php endif;?>
                     <?php else:?>
                          rightValue : 800,
                     <?php endif;?>
@@ -71,6 +78,43 @@
 
             });    
         });
+        
+        
+        //////////////////////////////////////////////////////////////
+        /* plus */
+        var count = 1;
+        $(document).ready(function(){
+            $(".btn-number-plus").click(function(){
+        
+                var plus_id = $(this).attr("data-id");
+                $.post("/basket/addCountAjax/"+plus_id, {}, function (data) {
+                        alert(data);
+                        $("#count").html(data);
+                    });
+                
+                return false;
+                //var countEl = document.getElementById("count");
+                //count++;
+                //countEl.value = count;
+            });
+        });
+        
+        /* minus */ /*
+        $(document).ready(function(){
+            $(".btn-number-minus").click(function(){
+        
+                var id = $(this).attr("data-id");
+                //alert(data_id);
+                $.post("/basket/subAjax/"+id, {}, function (data) {
+                        $("#count").html(data);
+                    });
+                return false;
+                var countEl = document.getElementById("count");
+                count--;
+                countEl.value = count;
+            });
+        });
+        */
 	</script>
 
 </body>

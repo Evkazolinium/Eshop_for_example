@@ -21,7 +21,7 @@
 		</div>
 
 		<div class="col-md-9">
-	<!--
+	
 			<div class="row carousel-holder">
 
 				<div class="col-md-12">
@@ -48,7 +48,7 @@
 				</div>
 
 			</div>
-	-->
+	
 			<div class="row">
 				
 				<?php $i=0; foreach($productList as $productItem) :?>
@@ -62,7 +62,7 @@
 						<a href="#" data-id="<?=$productItem['id'];?>" class="btn btn-success add-to-basket">Купить</a>
 						</div>
                         <div class="ratings">
-							<a href="" class="pull-right">&nbsp<?=Comment::countCommentsByProduct($productItem['id']);?> отзывов</a>
+							<a href="/product/<?=$productItem['id']?>" class="pull-right">&nbsp<?=Comment::countCommentsByProduct($productItem['id']);?> отзывов</a>
                         </div>
 					</div>
 				</div>
